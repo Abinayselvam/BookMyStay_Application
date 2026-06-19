@@ -158,8 +158,8 @@ public class Main {
                     break;
 
                 case 7:
-//
-//                    history.showHistory();
+
+                    history.showHistory();
                     break;
 
                 case 8:
