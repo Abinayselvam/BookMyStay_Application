@@ -102,6 +102,33 @@ public class BookingService {
                         roomId
         );
     }
+    public void addService(
+            Reservation reservation,
+            Service service) {
+
+        reservationServices
+
+                .computeIfAbsent(
+
+                        reservation
+                                .getReservationId(),
+
+                        k -> new ArrayList<>()
+                )
+
+                .add(service);
+    }
+    public void showServices(
+            Reservation reservation) {
+
+        System.out.println(
+
+                reservationServices.get(
+                        reservation
+                                .getReservationId()
+                )
+        );
+    }
 
 
 }
