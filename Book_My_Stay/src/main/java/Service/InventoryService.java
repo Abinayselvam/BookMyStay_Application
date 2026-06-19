@@ -1,14 +1,11 @@
 package Service;
-
-import Entity.Room;
-
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class InventoryService {
-    static HashMap<String, Room> rooms = new HashMap<>();
-    private static int roomCounter=100;
-    static Room room;
+    static HashMap<String, Integer> roomCount = new HashMap<>();
+    static HashMap<String, Double> roomPrice = new HashMap<>();
+    static int roomIdCounter = 100;
 
    public static void inventoryMain() {
 
@@ -22,28 +19,29 @@ public class InventoryService {
            switch(choice1)
            {
                case 1 :
-                   System.out.println("Room Type: ");
-                   String roomType = in.next();
-                   System.out.println("Enter Price: ");
+                   System.out.print("Room Type: ");
+                   String type = in.next();
+                   System.out.print("Count: ");
+                   int count = in.nextInt();
+                   System.out.print("Price: ");
                    double price = in.nextDouble();
-
-                   addRoom(roomType,price);
+                  addRoomType(type, count, price);
                    break;
                case 2 :
                    System.out.println("Enter Room Id:");
-                   String type = in.next();
+                   String type1 = in.next();
 
                    System.out.print("Enter Price:");
-                   double price1 = in.nextDouble();
+                   int count1 = in.nextInt();
 
-                   addPrice(type, price1);
+                   updateRoomCount(type1, count1);
                    break;
                case 3 :
                    System.out.println("Enter Room Id:");
-                   String type1 = in.next();
+                   String type2 = in.next();
                    System.out.print("Enter Price");
                    double price2 = in.nextDouble();
-                   updatePrice(type1,price2);
+                   updatePrice(type2,price2);
                    break;
                case 4 :
                    displayInventory();
@@ -60,52 +58,28 @@ public class InventoryService {
        }while(flag);
 
    }
-   public static void addRoom(String roomType, double price) {
-       String roomId = "R"+roomCounter++;
-       Room room = new Room(roomId,roomType,price);
-       rooms.put(roomId,room);
-       System.out.println("Successfully added Room");
-       System.out.println("Room ID: "+roomId);
 
-   }
+    // UC1
+    public static void addRoomType(String roomType, int count, double price) {
+        roomCount.put(roomType, roomCount.getOrDefault(roomType, 0) + count);
+        roomPrice.put(roomType, price);
+    }
+
+    public static void updateRoomCount(String roomType, int count) {
+        roomCount.put(roomType, count);
+    }
+
+    public static void updatePrice(String roomType, double price) {
+        roomPrice.put(roomType, price);
+    }
+
     public static void displayInventory() {
-
-        rooms.forEach((id, room) -> {
-            System.out.println(
-                    "Room ID: " + room.getId() +"\n" +
-                            "Room Type: " + room.getRoomType()+"\n"  +
-                            "Price: " + room.getPrice() + "\n"
-            );
+        roomCount.forEach((type, count) -> {
+            System.out.println(type + " Room");
+            System.out.println("Available : " + count);
+            System.out.println("Price : " + roomPrice.get(type));
+            System.out.println("-------------------");
         });
     }
-    public static void addPrice(String roomId, double price) {
-
-        if (rooms.containsKey(roomId)) {
-
-            Room room = rooms.get(roomId);
-            room.setPrice(price);
-
-            System.out.println("Price updated successfully for Room ID: " + room.getId());
-
-        } else {
-            System.out.println("Room ID not found!");
-        }
-    }
-    public static void updatePrice(String roomId, double newPrice) {
-
-        if (rooms.containsKey(roomId)) {
-
-            rooms.get(roomId).setPrice(newPrice);
-
-            System.out.println(
-                    "Successfully updated the price of Room ID "
-                            + roomId + " to " + newPrice);
-
-        } else {
-            System.out.println("Room ID not found!");
-        }
-    }
-
-
 
 }
