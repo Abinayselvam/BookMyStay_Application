@@ -35,4 +35,73 @@ public class BookingService {
         return reservation;
     }
 
+    public void processBooking(
+            InventoryService inventory,
+            HistoryService history) {
+
+        if (bookingQueue.isEmpty()) {
+
+            System.out.println(
+                    "No Pending Bookings"
+            );
+
+            return;
+        }
+
+        Reservation reservation =
+                bookingQueue.poll();
+
+        if (!inventory.isAvailable(
+                reservation.getRoomType()
+        )) {
+
+            System.out.println(
+                    "Room Not Available"
+            );
+
+            return;
+        }
+
+        String roomId =
+
+                reservation.getRoomType()
+                        .substring(0, 1)
+                        .toUpperCase()
+
+                        +
+
+                        (100 +
+                                allocatedRooms.size());
+
+        allocatedRooms.add(
+                roomId
+        );
+
+        reservation.setRoomId(
+                roomId
+        );
+
+        inventory.reduceRoomCount(
+                reservation.getRoomType()
+        );
+
+//        history.addHistory(
+//                reservation
+//        );
+
+        System.out.println(
+
+                "\nBooking Confirmed"
+                        +
+                        "\nReservation ID : "
+                        +
+                        reservation.getReservationId()
+                        +
+                        "\nRoom ID : "
+                        +
+                        roomId
+        );
+    }
+
+
 }

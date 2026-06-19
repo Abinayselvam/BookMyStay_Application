@@ -80,10 +80,10 @@ public class Main {
 
                 case 3:
 
-//                    booking.processBooking(
-//                            inventory,
-//                            history
-//                    );
+                    booking.processBooking(
+                            inventory,
+                            history
+                    );
 
                     break;
 
