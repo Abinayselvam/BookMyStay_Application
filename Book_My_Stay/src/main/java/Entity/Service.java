@@ -1,17 +1,31 @@
 package Entity;
 
 public class Service {
+
     private String serviceName;
-    private double servicePrice;
-    public  Service(String serviceName, double servicePrice) {
+    private double cost;
+
+    public Service(
+            String serviceName,
+            double cost) {
+
         this.serviceName = serviceName;
-        this.servicePrice = servicePrice;
+        this.cost = cost;
     }
+
     public String getServiceName() {
         return serviceName;
     }
-    public double getServicePrice() {
-        return servicePrice;
+
+    public double getCost() {
+        return cost;
     }
 
+    @Override
+    public String toString() {
+
+        return serviceName +
+                " ₹" +
+                cost;
+    }
 }
