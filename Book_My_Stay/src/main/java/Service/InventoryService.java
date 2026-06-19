@@ -4,13 +4,9 @@ import java.util.HashMap;
 
 public class InventoryService {
 
-    private HashMap<String,Integer>
-            roomCount =
-            new HashMap<>();
+    private HashMap<String,Integer> roomCount = new HashMap<>();
 
-    private HashMap<String,Double>
-            roomPrice =
-            new HashMap<>();
+    private HashMap<String,Double> roomPrice = new HashMap<>();
 
     public void addRoomType(
             String roomType,
