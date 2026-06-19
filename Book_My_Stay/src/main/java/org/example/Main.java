@@ -1,5 +1,6 @@
 package org.example;
 import Entity.Reservation;
+import Entity.Service;
 import Service.BookingService;
 import Service.HistoryService;
 import Service.InventoryService;
@@ -88,28 +89,28 @@ public class Main {
                     break;
 
                 case 4:
-//                    if(currentReservation != null) {
-//
-//                        booking.addService(
-//                                currentReservation,
-//
-//                                new AddOnService(
-//                                        "Breakfast",
-//                                        500
-//                                )
-//                        );
-//
-//
-//                        System.out.println(
-//                                "Breakfast Added"
-//                        );
-//                    }
-//                    else {
-//
-//                        System.out.println(
-//                                "Create Booking First"
-//                        );
-//                    }
+                    if(currentReservation != null) {
+
+                        booking.addService(
+                                currentReservation,
+
+                                new Service(
+                                        "Breakfast",
+                                        500
+                                )
+                        );
+
+
+                        System.out.println(
+                                "Breakfast Added"
+                        );
+                    }
+                    else {
+
+                        System.out.println(
+                                "Create Booking First"
+                        );
+                    }
 
                     break;
 

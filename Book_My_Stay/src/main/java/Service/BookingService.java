@@ -85,9 +85,9 @@ public class BookingService {
                 reservation.getRoomType()
         );
 
-//        history.addHistory(
-//                reservation
-//        );
+        history.addHistory(
+                reservation
+        );
 
         System.out.println(
 
@@ -102,6 +102,7 @@ public class BookingService {
                         roomId
         );
     }
+
 
 
 }
